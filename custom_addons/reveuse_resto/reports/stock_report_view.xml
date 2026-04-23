@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_stock" model="ir.actions.report">
+        <field name="name">Laporan Stok</field>
+        <field name="model">reveuse_resto.bahan_baku</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reveuse_resto.report_stock_pdf</field>
+        <field name="report_file">reveuse_resto.report_stock_pdf</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_assistant_manager'))]"/>
+    </record>
+</odoo>

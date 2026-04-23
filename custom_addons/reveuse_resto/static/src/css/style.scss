@@ -1,0 +1,237 @@
+:root {
+    --rv-bg: #f8fafc;
+    --rv-surface: #ffffff;
+    --rv-card: #f1f5f9;
+    --rv-ink: #1e293b;
+    --rv-muted: #64748b;
+    --rv-border: #e2e8f0;
+    
+
+    --rv-accent: #3b82f6;
+    --rv-ok: #22c55e;
+    --rv-warn: #f59e0b;
+    --rv-danger: #ef4444;
+}
+
+.o_action_manager,
+.o_web_client {
+    background: #f1f5f9 !important;
+}
+
+.reveuse-hidden-tree,
+.reveuse-hidden-kanban {
+    display: none;
+}
+
+.reveuse-shell {
+    font-family: "Manrope", "DM Sans", "Segoe UI", sans-serif;
+    color: var(--rv-ink);
+}
+
+.reveuse-shell .o_form_sheet_bg {
+    background: transparent;
+}
+
+.reveuse-shell .o_form_sheet {
+    border: 1px solid var(--rv-border);
+    border-radius: 18px;
+    background: var(--rv-surface);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    padding: 22px;
+}
+
+.reveuse-page-head h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.reveuse-page-head p {
+    margin: 8px 0 0;
+    color: var(--rv-muted);
+    font-size: 15px;
+}
+
+.reveuse-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+}
+
+.reveuse-stat-card {
+    background: var(--rv-surface);
+    border: 1px solid var(--rv-border);
+    border-radius: 14px;
+    padding: 14px;
+    color: var(--rv-ink);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.reveuse-stat-label {
+    color: var(--rv-muted);
+    font-weight: 600;
+}
+
+.reveuse-stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 6px;
+}
+
+.reveuse-panel {
+    border: 1px solid var(--rv-border);
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 14px;
+    margin-top: 14px;
+}
+
+.reveuse-panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.reveuse-mock-table th {
+    background: #f8fafc;
+    color: var(--rv-ink);
+    border-bottom: 2px solid var(--rv-border);
+}
+
+.reveuse-mock-table th,
+.reveuse-mock-table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.reveuse-mock-table th {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+.reveuse-mock-table tbody tr:nth-child(odd) {
+    background: #f8fafc;
+}
+
+.reveuse-card-lane {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.reveuse-app-card {
+    border: 1px solid var(--rv-border);
+    border-radius: 12px;
+    padding: 14px;
+    background: #f8fafc;
+}
+
+.reveuse-app-card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.reveuse-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    font-size: 14px;
+}
+
+.tag {
+    display: inline-block;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+}
+
+.tag-good {
+    color: #f0fdf4;
+    background: var(--rv-ok);
+}
+
+.tag-warn {
+    color: #fffbeb;
+    background: var(--rv-warn);
+}
+
+.tag-danger {
+    color: #fef2f2;
+    background: var(--rv-danger);
+}
+
+.reveuse-page-kitchen,
+.reveuse-kitchen-kanban,
+.reveuse-kitchen-card,
+.reveuse-kitchen-meta,
+.reveuse-kitchen-ticket-id {
+    font-size: 14pt;
+}
+
+.reveuse-kitchen-lanes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+.reveuse-lane {
+    border: 1px solid var(--rv-border);
+    border-radius: 14px;
+    background: #ffffff;
+    color: var(--rv-ink);
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.reveuse-lane h2 {
+    color: var(--rv-accent);
+    border-bottom: 2px solid var(--rv-bg);
+    padding-bottom: 8px;
+}
+
+.reveuse-lane h2 {
+    margin: 0 0 10px;
+    font-weight: 700;
+    color: #7dd3fc;
+}
+
+.reveuse-kitchen-card {
+    border: 1px solid var(--rv-border);
+    background: #f8fafc;
+    color: var(--rv-ink);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.reveuse-kitchen-ticket-id {
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+
+.reveuse-kitchen-card h3 {
+    color: var(--rv-accent);
+}
+
+.reveuse-kitchen-meta {
+    color: #cbd5e1;
+    margin-top: 4px;
+}
+
+@media (max-width: 1024px) {
+    .reveuse-stat-row,
+    .reveuse-card-lane,
+    .reveuse-kitchen-lanes,
+    .reveuse-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reveuse-page-head h1 {
+        font-size: 28px;
+    }
+}

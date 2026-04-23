@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="reveuse_resto_mock_warehouse_qweb" name="Warehouse Mock Template">
+        <div class="reveuse-panel">
+            <div class="reveuse-panel-title">Warehouse QWeb Block</div>
+            <p>Beef - 50 kg</p>
+            <p>Tomato - 20 kg</p>
+            <p>Chili Powder - 4 kg</p>
+        </div>
+    </template>
+
+    <template id="reveuse_resto_mock_sales_qweb" name="Sales Mock Template">
+        <div class="reveuse-panel">
+            <div class="reveuse-panel-title">Sales QWeb Block</div>
+            <p>ORD-240423-001 - Paid</p>
+            <p>ORD-240423-004 - Waiting Kitchen</p>
+            <p>ORD-240423-006 - Paid</p>
+        </div>
+    </template>
+
+    <template id="reveuse_resto_mock_kitchen_qweb" name="Kitchen Mock Template">
+        <div class="reveuse-panel">
+            <div class="reveuse-panel-title">Kitchen QWeb Block</div>
+            <p>T-02 - Nasi Goreng x2 - 00:05</p>
+            <p>T-11 - Steak x3 - 00:14</p>
+            <p>T-04 - Chicken Katsu x1 - Ready</p>
+        </div>
+    </template>
+
+    <template id="reveuse_resto_mock_management_qweb" name="Management Mock Template">
+        <div class="reveuse-panel">
+            <div class="reveuse-panel-title">Management QWeb Block</div>
+            <p>Revenue Today - Rp 18.920.000</p>
+            <p>Food Cost Ratio - 31%</p>
+            <p>Kitchen SLA - 93%</p>
+        </div>
+    </template>
+</odoo>

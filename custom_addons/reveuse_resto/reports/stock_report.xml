@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_stock_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Laporan Stok Bahan Baku</h2>
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nama Bahan</th>
+                                <th>Kategori</th>
+                                <th>Stok</th>
+                                <th>Batas Minimum</th>
+                                <th>Satuan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="bahan">
+                                <td><span t-field="bahan.name"/></td>
+                                <td><span t-field="bahan.category"/></td>
+                                <td><span t-field="bahan.stok_sekarang"/></td>
+                                <td><span t-field="bahan.batas_minimum"/></td>
+                                <td><span t-field="bahan.satuan"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

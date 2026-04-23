@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="notification_setting_default" model="reveuse_resto.notification_setting">
+        <field name="name">Low Stock Alert Hub</field>
+        <field name="notification_active">True</field>
+    </record>
+</odoo>

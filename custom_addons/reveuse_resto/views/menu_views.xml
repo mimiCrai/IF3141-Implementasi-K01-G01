@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- TODO: Configure groups, milestone 5 -->
+    <menuitem
+        id="menu_reveuse_resto_root"
+        name="Reveuse Resto"
+        sequence="10"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_inventaris"
+        name="Warehouse"
+        parent="menu_reveuse_resto_root"
+        action="action_bahan_baku"
+        sequence="20"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_riwayat_transaksi"
+        name="Kasir"
+        parent="menu_reveuse_resto_root"
+        action="action_transaksi"
+        sequence="30"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_kitchen_monitor"
+        name="Kitchen Staff"
+        parent="menu_reveuse_resto_root"
+        action="action_kitchen_order_monitor"
+        sequence="40"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_kitchen_board"
+        name="Board (Waiting / On Progress)"
+        parent="menu_reveuse_resto_kitchen_monitor"
+        action="action_kitchen_order_monitor"
+        sequence="10"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_kitchen_ingredient_form"
+        name="Penggunaan Bahan"
+        parent="menu_reveuse_resto_kitchen_monitor"
+        action="action_kitchen_ingredient_form"
+        sequence="20"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_management"
+        name="Manajer"
+        parent="menu_reveuse_resto_root"
+        action="action_management_overview"
+        sequence="50"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_management_overview"
+        name="Managerial Overview"
+        parent="menu_reveuse_resto_management"
+        action="action_management_overview"
+        sequence="10"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="menu_reveuse_resto_management_reports"
+        name="Reports (Day / Month Range)"
+        parent="menu_reveuse_resto_management"
+        action="action_management_reports"
+        sequence="20"
+        groups="base.group_user"
+    />
+</odoo>

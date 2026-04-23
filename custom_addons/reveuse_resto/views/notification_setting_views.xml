@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_notification_setting" model="ir.ui.view">
+        <field name="name">Notification</field>
+        <field name="model">reveuse_resto.notification_setting</field>
+        <field name="arch" type="xml">
+            <form string="Notification Setting" class="reveuse-shell" create="0" edit="0" delete="0">
+                <sheet>
+                    <div class="reveuse-page-head">
+                        <h1>Notification Center (Mock)</h1>
+                        <p>Static placeholder retained only for module compatibility.</p>
+                    </div>
+                    <div class="reveuse-panel">
+                        <div class="reveuse-panel-title">Mocked Notification Feed</div>
+                        <p>11:45 - Low stock alert simulated for Chili Powder.</p>
+                        <p>12:10 - Supplier reminder simulated for Burger Bun.</p>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_notification_setting" model="ir.actions.act_window">
+        <field name="name">Notification Setting (Mock)</field>
+        <field name="res_model">reveuse_resto.notification_setting</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_notification_setting"/>
+        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+</odoo>
