@@ -12,10 +12,13 @@
         "views/bahan_baku_views.xml",
         "views/kitchen_monitor_views.xml",
         "views/reporting_views.xml",
-        "views/menu_views.xml",
-        "views/notification_setting_views.xml",
+        # "views/notification_setting_views.xml",
+        "views/management_report_views.xml",
         "views/templates.xml",
-        "views/transaksi_views.xml"
+        "views/transaksi_views.xml",
+        "reports/stock_report_view.xml",
+        "reports/stock_report.xml",
+        "views/menu_views.xml"
     ],
     "assets": {
         "web.assets_backend": [
