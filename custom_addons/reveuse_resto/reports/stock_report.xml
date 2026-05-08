@@ -1,30 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_stock_pdf">
+    <record id="action_report_stok_pdf" model="ir.actions.report">
+        <field name="name">Laporan Mutasi Stok</field>
+        <field name="model">reveuse_resto.management_report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">reveuse_resto.report_stok_template</field>
+        <field name="report_file">reveuse_resto.report_stok_template</field>
+        <field name="binding_model_id" ref="model_reveuse_resto_management_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_stok_template">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
-                    <h2>Laporan Stok Bahan Baku</h2>
-                    <table class="table table-sm table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nama Bahan</th>
-                                <th>Kategori</th>
-                                <th>Stok</th>
-                                <th>Batas Minimum</th>
-                                <th>Satuan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr t-foreach="docs" t-as="bahan">
-                                <td><span t-field="bahan.name"/></td>
-                                <td><span t-field="bahan.category"/></td>
-                                <td><span t-field="bahan.stok_sekarang"/></td>
-                                <td><span t-field="bahan.batas_minimum"/></td>
-                                <td><span t-field="bahan.satuan"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="text-center mb-4">
+                        <h2>Laporan Mutasi Stok Bahan Baku</h2>
+                        <t t-foreach="docs" t-as="doc">
+                            <p><strong>Periode:</strong> <span t-field="doc.tanggal_mulai"/> s/d <span t-field="doc.tanggal_akhir"/></p>
+                            
+                            <t t-set="daftar_transaksi" t-value="request.env['reveuse_resto.transaksi'].search([('tanggal', '&gt;=', doc.tanggal_mulai), ('tanggal', '&lt;=', doc.tanggal_akhir)])"/>
+                            
+                            <table class="table table-sm table-bordered mt-4">
+                                <thead>
+                                    <tr>
+                                        <th>ID Transaksi</th>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Transaksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="daftar_transaksi" t-as="trx">
+                                        <tr>
+                                            <td><span t-field="trx.name"/></td>
+                                            <td><span t-field="trx.tanggal"/></td>
+                                            <td>
+                                                <t t-if="trx.jenis_transaksi == 'masuk'">Masuk (Penerimaan)</t>
+                                                <t t-if="trx.jenis_transaksi == 'keluar'">Keluar (Penggunaan)</t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            
+                            <t t-if="not daftar_transaksi">
+                                <div class="alert alert-warning text-center mt-3">
+                                    Tidak ada transaksi yang ditemukan pada rentang tanggal tersebut.
+                                </div>
+                            </t>
+                        </t>
+                    </div>
                 </div>
             </t>
         </t>

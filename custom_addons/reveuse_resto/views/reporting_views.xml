@@ -1,192 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_inventory_report_tree" model="ir.ui.view">
-        <field name="name">reveuse_resto.management.report.tree.mock</field>
-        <field name="model">reveuse_resto.management_overview</field>
-        <field name="arch" type="xml">
-            <tree string="Management - Mocked Grid" create="0" edit="0" delete="0" class="reveuse-hidden-tree">
-                <field name="name" string="Static Placeholder"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_inventory_report_kanban" model="ir.ui.view">
-        <field name="name">reveuse_resto.management.report.kanban.mock</field>
-        <field name="model">reveuse_resto.management_overview</field>
-        <field name="arch" type="xml">
-            <kanban class="reveuse-hidden-kanban" quick_create="0" create="0" edit="0" sample="1">
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card">
-                            <div>Static Mock</div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
     <record id="view_management_overview_form" model="ir.ui.view">
-        <field name="name">reveuse_resto.management.overview.form.mock</field>
+        <field name="name">reveuse_resto.management_overview.form</field>
         <field name="model">reveuse_resto.management_overview</field>
         <field name="arch" type="xml">
-            <form string="Managerial Overview &amp; User Control" create="0" edit="0" delete="0" class="reveuse-shell">
+            <form string="Managerial Overview" create="0" edit="0" delete="0" class="reveuse-shell">
                 <sheet>
                     <div class="reveuse-page-head">
                         <h1>Managerial Control Center</h1>
-                        <p>Overview of branch performance and User Access Control (UC-10).</p>
+                        <p>Overview performa cabang dan kontrol akses user.</p>
                     </div>
 
                     <div class="reveuse-stat-row">
                         <div class="reveuse-stat-card">
                             <div class="reveuse-stat-label">Active Staff</div>
-                            <div class="reveuse-stat-value">12 Users</div>
+                            <div class="reveuse-stat-value">
+                                <field name="total_staff"/> Users
+                            </div>
                         </div>
-                        
                     </div>
 
                     <div class="reveuse-panel">
                         <div class="reveuse-panel-title">User Access Control</div>
-                        <p class="text-muted">Manage staff roles and permissions for Reveuse Resto modules.</p>
-                        <table class="reveuse-mock-table">
-                            <thead>
-                                <tr>
-                                    <th>Staff Name</th>
-                                    <th>Email</th>
-                                    <th>Assigned Role</th>
-                                    <th>Module Access</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Crai (Admin)</td>
-                                    <td>crai@reveuse.com</td>
-                                    <td><span class="tag tag-good">Manager</span></td>
-                                    <td>Full System</td>
-                                    <td><button class="btn btn-secondary btn-sm" disabled="1">Edit</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Person Kasir</td>
-                                    <td>kasir@kasir.com</td>
-                                    <td><span class="tag tag-warn">Kasir</span></td>
-                                    <td>Sales &amp; Logs</td>
-                                    <td><button class="btn btn-primary btn-sm">Manage Access</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Kitchen Lead</td>
-                                    <td>chef@reveuse.com</td>
-                                    <td><span class="tag tag-warn">Kitchen</span></td>
-                                    <td>Kitchen Monitor</td>
-                                    <td><button class="btn btn-primary btn-sm">Manage Access</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Stock Keeper</td>
-                                    <td>wh@reveuse.com</td>
-                                    <td><span class="tag tag-warn">Warehouse</span></td>
-                                    <td>Warehouse Ops</td>
-                                    <td><button class="btn btn-primary btn-sm">Manage Access</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p class="text-muted">Kelola peran staff dan perizinan modul secara langsung.</p>
+                        
+                        <field name="pengguna_ids">
+                            <tree editable="bottom" decoration-info="peran == 'manager'" decoration-warning="peran == 'kasir'">
+                                <field name="name" string="Staff Name"/>
+                                <field name="email" string="Email"/>
+                                <field name="no_telp" string="No. Telp"/>
+                                <field name="status_notif" string="Notification" widget="boolean_toggle"/>
+                                <field name="peran" string="Assigned Role" widget="badge" 
+                                       decoration-info="peran == 'manager'" 
+                                       decoration-warning="peran == 'kasir'"
+                                       decoration-success="peran == 'kitchen'"
+                                       decoration-danger="peran == 'warehouse'"/>
+                                
+                                <field name="status_notif" string="Module Access" widget="badge" decoration-info="1"/>
+                                <button name="action_open_user_detail" string="Manage Access" type="object" 
+                                        class="btn-primary" icon="fa-gears"/>
+                            </tree>
+                        </field>
                     </div>
 
-                    <div class="reveuse-panel">
+                    <div class="reveuse-panel" style="border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px;">
                         <div class="reveuse-panel-title">System Logs &amp; Integrity (CR-4)</div>
-                        <div class="reveuse-form-grid">
+                        <div class="reveuse-form-grid" style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
-                                <strong>Last Security Audit:</strong> 24 April 2026
-                            </div>
-                            <div>
+                                <strong>Last Security Audit:</strong> 24 April 2026<br/>
                                 <strong>Unauthorized Attempts:</strong> 0
                             </div>
-                            <div style="grid-column: span 2;">
-                                <button class="btn btn-danger">Reset All Staff Session Tokens</button>
-                            </div>
+                            <button string="Reset All Staff Session Tokens" class="btn-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;"/>
                         </div>
-                    </div>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_management_reports_form" model="ir.ui.view">
-        <field name="name">reveuse_resto.management.reports.form.mock</field>
-        <field name="model">reveuse_resto.management_report</field>
-        <field name="arch" type="xml">
-            <form string="Reports - Day / Month Range" create="0" edit="0" delete="0" class="reveuse-shell reveuse-page-management">
-                <sheet>
-                    <div class="reveuse-page-head">
-                        <h1>Reports</h1>
-                        <p>Focused report screen for Day A or Month A-B analysis.</p>
-                    </div>
-
-                    <div class="reveuse-panel">
-                        <div class="reveuse-panel-title">Report Filters</div>
-                        <div class="reveuse-form-grid">
-                            <div>
-                                <strong>Mode</strong>
-                                <select class="form-control">
-                                    <option>Single Day (Day A)</option>
-                                    <option>Month Range (Month A-B)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <strong>Branch</strong>
-                                <select class="form-control">
-                                    <option>All Branches</option>
-                                    <option>Bandung Central</option>
-                                    <option>Bandung North</option>
-                                    <option>Bandung East</option>
-                                </select>
-                            </div>
-                            <div>
-                                <strong>Day A</strong>
-                                <input type="date" class="form-control" value="2026-04-23"/>
-                            </div>
-                            <div>
-                                <strong>Month A</strong>
-                                <input type="month" class="form-control" value="2026-03"/>
-                            </div>
-                            <div>
-                                <strong>Month B</strong>
-                                <input type="month" class="form-control" value="2026-04"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="reveuse-panel">
-                        <div class="reveuse-panel-title">Result Snapshot</div>
-                        <table class="reveuse-mock-table">
-                            <thead>
-                                <tr>
-                                    <th>Metric</th>
-                                    <th>Day A</th>
-                                    <th>Month A</th>
-                                    <th>Month B</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Orders</td>
-                                    <td>126</td>
-                                    <td>3,420</td>
-                                    <td>3,798</td>
-                                </tr>
-                                <tr>
-                                    <td>Revenue</td>
-                                    <td>Rp 12.480.000</td>
-                                    <td>Rp 332.000.000</td>
-                                    <td>Rp 367.800.000</td>
-                                </tr>
-                                <tr>
-                                    <td>Waste Ratio</td>
-                                    <td>3.1%</td>
-                                    <td>3.8%</td>
-                                    <td>3.2%</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </sheet>
             </form>
@@ -196,24 +61,6 @@
     <record id="action_management_overview" model="ir.actions.act_window">
         <field name="name">Managerial Overview</field>
         <field name="res_model">reveuse_resto.management_overview</field>
-        <field name="view_mode">form,tree,kanban</field>
-        <field name="view_id" ref="view_management_overview_form"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
-    </record>
-
-    <record id="action_management_reports" model="ir.actions.act_window">
-        <field name="name">Reports (Day / Month Range)</field>
-        <field name="res_model">reveuse_resto.management_report</field>
-        <field name="view_mode">form,tree,kanban</field>
-        <field name="view_id" ref="view_management_reports_form"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
-    </record>
-
-    <record id="action_management_view_report" model="ir.actions.act_window">
-        <field name="name">Management and Reports</field>
-        <field name="res_model">reveuse_resto.management_overview</field>
-        <field name="view_mode">form,tree,kanban</field>
-        <field name="view_id" ref="view_management_overview_form"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+        <field name="view_mode">form</field>
     </record>
 </odoo>

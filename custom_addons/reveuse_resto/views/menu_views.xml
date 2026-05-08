@@ -53,11 +53,10 @@
         groups="base.group_user"
     />
 
-    <menuitem
+<menuitem
         id="menu_reveuse_resto_management"
         name="Manajer"
         parent="menu_reveuse_resto_root"
-        action="action_management_overview"
         sequence="50"
         groups="base.group_user"
     />
@@ -73,9 +72,9 @@
 
     <menuitem
         id="menu_reveuse_resto_management_reports"
-        name="Reports (Day / Month Range)"
+        name="Reports (Laporan Stok)"
         parent="menu_reveuse_resto_management"
-        action="action_management_reports"
+        action="action_management_report"  
         sequence="20"
         groups="base.group_user"
     />

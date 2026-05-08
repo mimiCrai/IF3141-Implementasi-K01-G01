@@ -1,9 +1,13 @@
 from odoo import models, fields
 
-
 class NotificationSetting(models.Model):
-    _name = 'reveuse_resto.notification_setting'
-    _description = 'Mock Notification Setting'
+    _name = 'reveuse_resto.notification.setting'
+    _description = 'Pengaturan Notifikasi Asisten Manajer'
 
-    name = fields.Char(string='Setting Name', default='Default Notification Center')
+    pengguna_id = fields.Many2one('reveuse_resto.pengguna', string='Pilih Akun', required=True)
     
+    terima_notifikasi = fields.Boolean(
+        related='pengguna_id.status_notif', 
+        readonly=False, 
+        string='Terima Peringatan Stok Minimum'
+    )

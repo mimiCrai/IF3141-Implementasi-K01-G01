@@ -7,10 +7,10 @@
             <form string="Cetak Laporan Stok">
                 <group>
                     <group>
-                        <field name="tanggal_mulai"/>
+                        <field name="tanggal_mulai" string="Periode Mulai"/>
                     </group>
                     <group>
-                        <field name="tanggal_akhir"/>
+                        <field name="tanggal_akhir" string="Periode Akhir"/>
                     </group>
                 </group>
                 <footer>
