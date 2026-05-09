@@ -50,7 +50,9 @@
                                 <strong>Last Security Audit:</strong> 24 April 2026<br/>
                                 <strong>Unauthorized Attempts:</strong> 0
                             </div>
-                            <button string="Reset All Staff Session Tokens" class="btn-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;"/>
+                            <span class="btn btn-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+                                Reset All Staff Session Tokens
+                            </span>
                         </div>
                     </div>
                 </sheet>

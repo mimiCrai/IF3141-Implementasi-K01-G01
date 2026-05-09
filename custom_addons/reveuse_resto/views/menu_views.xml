@@ -21,9 +21,9 @@
         id="menu_reveuse_resto_riwayat_transaksi"
         name="Kasir"
         parent="menu_reveuse_resto_root"
-        action="action_transaksi"
+        action="point_of_sale.action_pos_config_kanban"
         sequence="30"
-        groups="base.group_user"
+        groups="reveuse_resto.group_kasir,point_of_sale.group_pos_user"
     />
 
     <menuitem

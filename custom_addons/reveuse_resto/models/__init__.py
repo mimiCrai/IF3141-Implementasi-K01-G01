@@ -1,6 +1,7 @@
 from . import pengguna
 from . import bahan_baku
 from . import transaksi
+from . import pos_order
 from . import kitchen_order
 from . import kitchen_ingredient_usage
 from . import management_overview

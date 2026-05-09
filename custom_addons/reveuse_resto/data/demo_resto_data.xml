@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_uom_milliliter" model="uom.uom">
+        <field name="name">mL</field>
+        <field name="category_id" ref="uom.product_uom_categ_vol"/>
+        <field name="uom_type">smaller</field>
+        <field name="factor">1000.0</field>
+        <field name="rounding">0.01</field>
+    </record>
+
+    <record id="product_biji_kopi_espresso" model="product.product">
+        <field name="name">Biji Kopi Espresso</field>
+        <field name="detailed_type">product</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+    </record>
+
+    <record id="product_susu_fresh_milk" model="product.product">
+        <field name="name">Susu Fresh Milk</field>
+        <field name="detailed_type">product</field>
+        <field name="uom_id" ref="uom.product_uom_litre"/>
+        <field name="uom_po_id" ref="uom.product_uom_litre"/>
+    </record>
+
+    <record id="product_iced_kopi_susu" model="product.product">
+        <field name="name">Iced Kopi Susu</field>
+        <field name="detailed_type">product</field>
+        <field name="available_in_pos">True</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record id="bom_iced_kopi_susu" model="mrp.bom">
+        <field name="product_tmpl_id" search="[('name', '=', 'Iced Kopi Susu')]"/>
+        <field name="product_qty">1.0</field>
+        <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        <field name="type">phantom</field>
+        <field name="bom_line_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {
+                'product_id': ref('reveuse_resto.product_biji_kopi_espresso'),
+                'product_qty': 18.0,
+                'product_uom_id': ref('uom.product_uom_gram'),
+            }),
+            (0, 0, {
+                'product_id': ref('reveuse_resto.product_susu_fresh_milk'),
+                'product_qty': 200.0,
+                'product_uom_id': ref('reveuse_resto.product_uom_milliliter'),
+            }),
+        ]"/>
+    </record>
+</odoo>

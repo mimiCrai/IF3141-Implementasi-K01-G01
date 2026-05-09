@@ -17,3 +17,14 @@ class Pengguna(models.Model):
     ], string='Peran', required=True)
     password = fields.Char(string='Password')
     status_notif = fields.Boolean(string='Terima Notifikasi Minimum', default=False)
+
+    def action_open_user_detail(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'User Detail',
+            'res_model': 'reveuse_resto.pengguna',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'current',
+        }
