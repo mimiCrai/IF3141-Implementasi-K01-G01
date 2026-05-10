@@ -129,4 +129,47 @@
         <field name="view_id" ref="view_bahan_baku_form"/>
         <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
     </record>
+
+    <record id="view_bahan_baku_tree_crud" model="ir.ui.view">
+        <field name="name">reveuse_resto.bahan_baku.tree.crud</field>
+        <field name="model">reveuse_resto.bahan_baku</field>
+        <field name="arch" type="xml">
+            <tree string="Master Data Bahan Baku">
+                <field name="name"/>
+                <field name="id_bahan"/>
+                <field name="kategori"/>
+                <field name="stok_sekarang"/>
+                <field name="batas_minimum"/>
+                <field name="satuan_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bahan_baku_form_crud" model="ir.ui.view">
+        <field name="name">reveuse_resto.bahan_baku.form.crud</field>
+        <field name="model">reveuse_resto.bahan_baku</field>
+        <field name="arch" type="xml">
+            <form string="Master Data Bahan Baku">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="id_bahan"/>
+                        <field name="kategori"/>
+                    </group>
+                    <group>
+                        <field name="stok_sekarang"/>
+                        <field name="batas_minimum"/>
+                        <field name="satuan_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bahan_baku_crud" model="ir.actions.act_window">
+        <field name="name">Master Data Bahan Baku</field>
+        <field name="res_model">reveuse_resto.bahan_baku</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_bahan_baku_tree_crud"/>
+    </record>
 </odoo>

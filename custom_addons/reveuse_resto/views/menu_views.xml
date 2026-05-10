@@ -18,6 +18,15 @@
     />
 
     <menuitem
+        id="menu_reveuse_resto_inventaris_master_data"
+        name="Master Data Bahan Baku"
+        parent="menu_reveuse_resto_inventaris"
+        action="action_bahan_baku_crud"
+        sequence="10"
+        groups="reveuse_resto.group_warehouse,reveuse_resto.group_assistant_manager"
+    />
+
+    <menuitem
         id="menu_reveuse_resto_riwayat_transaksi"
         name="Kasir"
         parent="menu_reveuse_resto_root"

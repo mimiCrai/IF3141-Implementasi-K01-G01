@@ -5,7 +5,7 @@
     "description": "Reveuse Resto module for monitoring bahan baku stock.",
     "category": "Inventory",
     "author": "K01 G01",
-    "depends": ["base", "mail", "stock", "mrp", "point_of_sale"],
+    "depends": ["base", "mail", "stock", "mrp", "point_of_sale", "uom"],
     "data": [
         "security/security_groups.xml",
         "security/ir.model.access.csv",
