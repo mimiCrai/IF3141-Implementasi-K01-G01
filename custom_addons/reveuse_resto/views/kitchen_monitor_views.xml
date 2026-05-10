@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="view_kitchen_ingredient_usage_tree" model="ir.ui.view">
+        <field name="name">reveuse_resto.kitchen.ingredient.usage.tree</field>
+        <field name="model">reveuse_resto.kitchen_ingredient_usage</field>
+        <field name="arch" type="xml">
+            <tree string="Penggunaan Bahan" create="0" edit="0" delete="0">
+                <field name="usage_datetime"/>
+                <field name="pos_reference"/>
+                <field name="menu_product_id"/>
+                <field name="menu_qty"/>
+                <field name="ingredient_product_id"/>
+                <field name="qty_used"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_kitchen_ingredient_usage_form" model="ir.ui.view">
+        <field name="name">reveuse_resto.kitchen.ingredient.usage.form</field>
+        <field name="model">reveuse_resto.kitchen_ingredient_usage</field>
+        <field name="arch" type="xml">
+            <form string="Penggunaan Bahan" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <field name="usage_datetime"/>
+                        <field name="pos_reference"/>
+                        <field name="menu_product_id"/>
+                        <field name="menu_qty"/>
+                        <field name="ingredient_product_id"/>
+                        <field name="qty_used"/>
+                        <field name="uom_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kitchen_ingredient_form" model="ir.actions.act_window">
+        <field name="name">Penggunaan Bahan</field>
+        <field name="res_model">reveuse_resto.kitchen_ingredient_usage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_kitchen_ingredient_usage_tree"/>
+        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+
     <record id="view_kitchen_order_monitor_kanban" model="ir.ui.view">
         <field name="name">reveuse_resto.kitchen.order.monitor.kanban.mock</field>
         <field name="model">reveuse_resto.kitchen_order</field>
@@ -16,7 +60,7 @@
                             <div class="reveuse-kitchen-actions">
                                 <span class="tag tag-warn">Waiting</span>
                             </div>
-                            <button type="action" name="%(action_kitchen_ingredient_form)d" string="Edit Ingredients" class="btn btn-primary mt8"/>
+                            <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" string="Edit Ingredients" class="btn btn-primary mt8"/>
                         </div>
                     </t>
                 </templates>
@@ -64,7 +108,7 @@
                                         <li>Es Teh x2</li>
                                     </ul>
                                 </div>
-                                <button type="action" name="%(action_kitchen_ingredient_form)d" 
+                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
                                         string="Process Order" class="btn btn-primary w-100 mt-2"/>
                             </div>
 
@@ -80,7 +124,7 @@
                                         <li>Iced Coffee x2</li>
                                     </ul>
                                 </div>
-                                <button type="action" name="%(action_kitchen_ingredient_form)d" 
+                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
                                         string="Process Order" class="btn btn-primary w-100 mt-2"/>
                             </div>
                         </div>
@@ -103,7 +147,7 @@
                                         <li>Fries Large x2</li>
                                     </ul>
                                 </div>
-                                <button type="action" name="%(action_kitchen_ingredient_form)d" 
+                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
                                         string="Mark as Done" class="btn btn-success w-100 mt-2"/>
                             </div>
 
@@ -119,7 +163,7 @@
                                         <li>Mineral Water x2</li>
                                     </ul>
                                 </div>
-                                <button type="action" name="%(action_kitchen_ingredient_form)d" 
+                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
                                         string="Mark as Done" class="btn btn-success w-100 mt-2"/>
                             </div>
                         </div>
@@ -129,55 +173,11 @@
         </field>
     </record>
 
-    <record id="view_kitchen_ingredient_usage_tree" model="ir.ui.view">
-        <field name="name">reveuse_resto.kitchen.ingredient.usage.tree</field>
-        <field name="model">reveuse_resto.kitchen_ingredient_usage</field>
-        <field name="arch" type="xml">
-            <tree string="Penggunaan Bahan" create="0" edit="0" delete="0">
-                <field name="usage_datetime"/>
-                <field name="pos_reference"/>
-                <field name="menu_product_id"/>
-                <field name="menu_qty"/>
-                <field name="ingredient_product_id"/>
-                <field name="qty_used"/>
-                <field name="uom_id"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_kitchen_ingredient_usage_form" model="ir.ui.view">
-        <field name="name">reveuse_resto.kitchen.ingredient.usage.form</field>
-        <field name="model">reveuse_resto.kitchen_ingredient_usage</field>
-        <field name="arch" type="xml">
-            <form string="Penggunaan Bahan" create="0" edit="0" delete="0">
-                <sheet>
-                    <group>
-                        <field name="usage_datetime"/>
-                        <field name="pos_reference"/>
-                        <field name="menu_product_id"/>
-                        <field name="menu_qty"/>
-                        <field name="ingredient_product_id"/>
-                        <field name="qty_used"/>
-                        <field name="uom_id"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="action_kitchen_ingredient_form" model="ir.actions.act_window">
-        <field name="name">Penggunaan Bahan</field>
-        <field name="res_model">reveuse_resto.kitchen_ingredient_usage</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_kitchen_ingredient_usage_tree"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
-    </record>
-
     <record id="action_kitchen_order_monitor" model="ir.actions.act_window">
         <field name="name">Daftar Pesanan</field>
         <field name="res_model">reveuse_resto.kitchen_order</field>
         <field name="view_mode">form,kanban,tree</field>
-        <field name="view_id" ref="view_kitchen_order_monitor_form"/>
+        <field name="view_id" ref="reveuse_resto.view_kitchen_order_monitor_form"/>
         <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
     </record>
 </odoo>
