@@ -7,3 +7,4 @@ from . import kitchen_ingredient_usage
 from . import management_overview
 from . import management_report
 from . import notification_setting
+from . import penerimaan

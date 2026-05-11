@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_penerimaan" model="ir.sequence">
+        <field name="name">Penerimaan Bahan</field>
+        <field name="code">reveuse_resto.penerimaan</field>
+        <field name="prefix">PNR</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

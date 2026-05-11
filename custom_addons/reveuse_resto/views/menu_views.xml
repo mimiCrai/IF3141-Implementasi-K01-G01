@@ -27,6 +27,15 @@
     />
 
     <menuitem
+        id="menu_reveuse_resto_penerimaan"
+        name="Penerimaan Bahan"
+        parent="menu_reveuse_resto_inventaris"
+        action="action_penerimaan"
+        sequence="20"
+        groups="reveuse_resto.group_warehouse,reveuse_resto.group_assistant_manager"
+    />
+
+    <menuitem
         id="menu_reveuse_resto_riwayat_transaksi"
         name="Kasir"
         parent="menu_reveuse_resto_root"

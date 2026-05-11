@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_penerimaan_tree" model="ir.ui.view">
+        <field name="name">reveuse_resto.penerimaan.tree</field>
+        <field name="model">reveuse_resto.penerimaan</field>
+        <field name="arch" type="xml">
+            <tree string="Penerimaan Bahan">
+                <field name="id_penerimaan"/>
+                <field name="tanggal"/>
+                <field name="bahan_id"/>
+                <field name="stok_masuk"/>
+                <field name="satuan_id"/>
+                <field name="catatan"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_penerimaan_form" model="ir.ui.view">
+        <field name="name">reveuse_resto.penerimaan.form</field>
+        <field name="model">reveuse_resto.penerimaan</field>
+        <field name="arch" type="xml">
+            <form string="Penerimaan Bahan">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id_penerimaan" readonly="1"/>
+                            <field name="tanggal"/>
+                            <field name="bahan_id"/>
+                            <field name="stok_masuk"/>
+                            <field name="satuan_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="catatan"/>
+                        </group>
+                    </group>
+
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_penerimaan" model="ir.actions.act_window">
+        <field name="name">Penerimaan Bahan</field>
+        <field name="res_model">reveuse_resto.penerimaan</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_penerimaan_tree"/>
+    </record>
+</odoo>
