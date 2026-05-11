@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_bahan_baku" model="ir.sequence">
+        <field name="name">Bahan Baku</field>
+        <field name="code">reveuse_resto.bahan_baku</field>
+        <field name="prefix">BBK</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

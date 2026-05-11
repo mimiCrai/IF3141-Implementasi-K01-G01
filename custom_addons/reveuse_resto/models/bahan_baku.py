@@ -10,7 +10,12 @@ class BahanBaku(models.Model):
     ]
 
     name = fields.Char(string='Nama Bahan', required=True)
-    id_bahan = fields.Char(string='ID Bahan', required=True)
+    id_bahan = fields.Char(
+        string='ID Bahan',
+        required=True,
+        copy=False,
+        default=lambda self: self.env['ir.sequence'].next_by_code('reveuse_resto.bahan_baku')
+    )
     kategori = fields.Selection([
         ('sayur', 'Sayuran'),
         ('daging', 'Daging'),

@@ -9,6 +9,7 @@
     "data": [
         "security/security_groups.xml",
         "security/ir.model.access.csv",
+        "data/bahan_baku_sequence.xml",
         "data/penerimaan_sequence.xml",
         "views/bahan_baku_views.xml",
         "views/penerimaan_views.xml",
