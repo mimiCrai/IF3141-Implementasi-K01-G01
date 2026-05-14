@@ -78,6 +78,49 @@
         groups="reveuse_resto.group_assistant_manager"
     />
 
+    <record id="view_pengguna_tree" model="ir.ui.view">
+        <field name="name">reveuse_resto.pengguna.tree</field>
+        <field name="model">reveuse_resto.pengguna</field>
+        <field name="arch" type="xml">
+            <tree string="Daftar Staff">
+                <field name="name" string="Nama Lengkap"/>
+                <field name="id_pengguna" string="ID Pengguna (Login)"/>
+                <field name="email" string="Email"/>
+                <field name="peran" string="Peran" widget="badge" 
+                       decoration-info="peran == 'manager'" 
+                       decoration-warning="peran == 'kasir'"
+                       decoration-success="peran == 'kitchen'"
+                       decoration-danger="peran == 'warehouse'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pengguna_form" model="ir.ui.view">
+        <field name="name">reveuse_resto.pengguna.form</field>
+        <field name="model">reveuse_resto.pengguna</field>
+        <field name="arch" type="xml">
+            <form string="Detail Staff">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Nama Lengkap"/></h1>
+                    </div>
+                    <group>
+                        <group string="Informasi Login">
+                            <field name="id_pengguna"/>
+                            <field name="email"/>
+                            <field name="password" password="True"/>
+                        </group>
+                        <group string="Hak Akses &amp; Kontak">
+                            <field name="peran"/>
+                            <field name="no_telp"/>
+                            <field name="status_notif"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="action_pengguna_crud" model="ir.actions.act_window">
         <field name="name">Kelola Data Staff</field>
         <field name="res_model">reveuse_resto.pengguna</field>
