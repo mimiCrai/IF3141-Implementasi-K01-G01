@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 
-class ManagementOverview(models.Model):
+class ManagementOverview(models.TransientModel):
     _name = 'reveuse_resto.management_overview'
     _description = 'Managerial Overview Model'
 
@@ -18,12 +18,13 @@ class ManagementOverview(models.Model):
 
     total_staff = fields.Integer(string='Active Staff', compute='_compute_total_staff')
     
-    pengguna_ids = fields.Many2many('reveuse_resto.pengguna', string='Daftar Staff', compute='_compute_pengguna_ids')
+    pengguna_ids = fields.Many2many(
+        'reveuse_resto.pengguna', 
+        string='Daftar Staff', 
+        default=lambda self: self.env['reveuse_resto.pengguna'].search([])
+    )
 
+    @api.depends('pengguna_ids')
     def _compute_total_staff(self):
         for record in self:
-            record.total_staff = self.env['reveuse_resto.pengguna'].search_count([])
-
-    def _compute_pengguna_ids(self):
-        for record in self:
-            record.pengguna_ids = self.env['reveuse_resto.pengguna'].search([])
+            record.total_staff = len(record.pengguna_ids)

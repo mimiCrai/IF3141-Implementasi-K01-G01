@@ -49,4 +49,32 @@
             }),
         ]"/>
     </record>
+
+    <record id="demo_user_manager" model="res.users">
+        <field name="name">Assistant Manager</field>
+        <field name="login">manager@reveuse.com</field>
+        <field name="password">manager123</field> 
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_assistant_manager'))]"/>
+    </record>
+
+    <record id="demo_user_kasir" model="res.users">
+        <field name="name">Kasir</field>
+        <field name="login">kasir@reveuse.com</field>
+        <field name="password">kasir123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_kasir'))]"/>
+    </record>
+
+    <record id="demo_user_kitchen" model="res.users">
+        <field name="name">Kitchen</field>
+        <field name="login">kitchen@reveuse.com</field>
+        <field name="password">kitchen123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_kitchen'))]"/>
+    </record>
+
+    <record id="demo_user_warehouse" model="res.users">
+        <field name="name">Warehouse</field>
+        <field name="login">warehouse@reveuse.com</field>
+        <field name="password">warehouse123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_warehouse'))]"/>
+    </record>
 </odoo>

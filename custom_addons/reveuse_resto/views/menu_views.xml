@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<!-- TODO: Configure groups, milestone 5 -->
     <menuitem
         id="menu_reveuse_resto_root"
         name="Reveuse Resto"
         sequence="10"
-        groups="base.group_user"
+        groups="reveuse_resto.group_warehouse,reveuse_resto.group_kitchen,reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -14,7 +13,7 @@
         parent="menu_reveuse_resto_root"
         action="action_bahan_baku"
         sequence="20"
-        groups="base.group_user"
+        groups="reveuse_resto.group_warehouse,reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -36,21 +35,12 @@
     />
 
     <menuitem
-        id="menu_reveuse_resto_riwayat_transaksi"
-        name="Kasir"
-        parent="menu_reveuse_resto_root"
-        action="point_of_sale.action_pos_config_kanban"
-        sequence="30"
-        groups="reveuse_resto.group_kasir,point_of_sale.group_pos_user"
-    />
-
-    <menuitem
         id="menu_reveuse_resto_kitchen_monitor"
         name="Kitchen Staff"
         parent="menu_reveuse_resto_root"
         action="action_kitchen_order_monitor"
         sequence="40"
-        groups="base.group_user"
+        groups="reveuse_resto.group_kitchen,reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -59,7 +49,7 @@
         parent="menu_reveuse_resto_kitchen_monitor"
         action="action_kitchen_order_monitor"
         sequence="10"
-        groups="base.group_user"
+        groups="reveuse_resto.group_kitchen,reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -68,15 +58,15 @@
         parent="menu_reveuse_resto_kitchen_monitor"
         action="action_kitchen_ingredient_form"
         sequence="20"
-        groups="base.group_user"
+        groups="reveuse_resto.group_kitchen,reveuse_resto.group_assistant_manager"
     />
 
-<menuitem
+    <menuitem
         id="menu_reveuse_resto_management"
         name="Manajer"
         parent="menu_reveuse_resto_root"
         sequence="50"
-        groups="base.group_user"
+        groups="reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -85,7 +75,22 @@
         parent="menu_reveuse_resto_management"
         action="action_management_overview"
         sequence="10"
-        groups="base.group_user"
+        groups="reveuse_resto.group_assistant_manager"
+    />
+
+    <record id="action_pengguna_crud" model="ir.actions.act_window">
+        <field name="name">Kelola Data Staff</field>
+        <field name="res_model">reveuse_resto.pengguna</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_reveuse_resto_pengguna_crud"
+        name="Data Staff (Access Control)"
+        parent="menu_reveuse_resto_management"
+        action="action_pengguna_crud"
+        sequence="15"
+        groups="reveuse_resto.group_assistant_manager"
     />
 
     <menuitem
@@ -94,6 +99,6 @@
         parent="menu_reveuse_resto_management"
         action="action_management_report"  
         sequence="20"
-        groups="base.group_user"
+        groups="reveuse_resto.group_assistant_manager"
     />
 </odoo>

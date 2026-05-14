@@ -4,7 +4,7 @@
         <field name="name">reveuse_resto.management_overview.form</field>
         <field name="model">reveuse_resto.management_overview</field>
         <field name="arch" type="xml">
-            <form string="Managerial Overview" create="0" edit="0" delete="0" class="reveuse-shell">
+            <form string="Managerial Overview" class="reveuse-shell">
                 <sheet>
                     <div class="reveuse-page-head">
                         <h1>Managerial Control Center</h1>
