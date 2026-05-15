@@ -16,13 +16,14 @@
         "views/kitchen_monitor_views.xml",
         "views/reporting_views.xml",
         # "views/notification_setting_views.xml",
-        "views/management_report_views.xml",
+        # "views/management_report_views.xml",
         "views/templates.xml",
         "views/transaksi_views.xml",
         "reports/stock_report_view.xml",
         "reports/stock_report.xml",
         "data/demo_resto_data.xml",
-        "views/menu_views.xml"
+        "views/menu_views.xml",
+        "views/ingredient_wizard_view.xml"
     ],
     "assets": {
         "web.assets_backend": [

@@ -5,14 +5,14 @@
         <field name="model">reveuse_resto.kitchen_ingredient_usage</field>
         <field name="arch" type="xml">
             <tree string="Penggunaan Bahan" create="0" edit="0" delete="0">
-                <field name="usage_datetime"/>
-                <field name="pos_reference"/>
-                <field name="menu_product_id"/>
-                <field name="menu_qty"/>
-                <field name="ingredient_product_id"/>
-                <field name="qty_used"/>
-                <field name="uom_id"/>
-            </tree>
+                <field name="usage_datetime" string="Waktu" widget="datetime"/>
+                <field name="pos_reference" string="Ref. Transaksi" decoration-bf="1"/>
+                
+                <field name="ingredient_product_id" string="Bahan Terpakai"/>
+                <field name="qty_used" string="Kuantitas Terpakai" sum="Total Kuantitas"/>
+                <field name="uom_id" string="Satuan"/>
+                
+                </tree>
         </field>
     </record>
 
@@ -22,14 +22,23 @@
         <field name="arch" type="xml">
             <form string="Penggunaan Bahan" create="0" edit="0" delete="0">
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="pos_reference"/></h1>
+                    </div>
                     <group>
-                        <field name="usage_datetime"/>
-                        <field name="pos_reference"/>
-                        <field name="menu_product_id"/>
-                        <field name="menu_qty"/>
-                        <field name="ingredient_product_id"/>
-                        <field name="qty_used"/>
-                        <field name="uom_id"/>
+                        <group string="Informasi Order">
+                            <field name="usage_datetime"/>
+                            <field name="menu_product_id"/>
+                            <field name="menu_qty"/>
+                        </group>
+                        <group string="Kalkulasi Bahan">
+                            <field name="ingredient_product_id"/>
+                            <label for="qty_used" string="Jumlah Terpakai"/>
+                            <div class="o_row">
+                                <field name="qty_used"/>
+                                <field name="uom_id"/>
+                            </div>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -45,22 +54,61 @@
     </record>
 
     <record id="view_kitchen_order_monitor_kanban" model="ir.ui.view">
-        <field name="name">reveuse_resto.kitchen.order.monitor.kanban.mock</field>
+        <field name="name">reveuse_resto.kitchen.order.monitor.kanban</field>
         <field name="model">reveuse_resto.kitchen_order</field>
         <field name="arch" type="xml">
-            <kanban class="reveuse-kitchen-kanban" sample="1" quick_create="0" create="0" edit="0" delete="0">
+            <kanban default_group_by="status" class="o_kanban_dashboard" records_draggable="true">
+                <field name="name"/>
+                <field name="table_number"/>
+                <field name="item_summary"/>
+                <field name="ingredients_needed"/>
+                <field name="elapsed_display"/>
+                <field name="status"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_card reveuse-kitchen-card">
-                            <div class="reveuse-kitchen-ticket-id">Kitchen Ticket</div>
-                            <h3>ORD-240423-004</h3>
-                            <div class="reveuse-kitchen-meta">Table T-07</div>
-                            <div class="reveuse-kitchen-meta">Elapsed 00:12</div>
-                            <div class="reveuse-kitchen-meta">Items: Steak, Lemon Tea</div>
-                            <div class="reveuse-kitchen-actions">
-                                <span class="tag tag-warn">Waiting</span>
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb-2">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title" style="font-size: 16px; color: #3b82f6;">
+                                        <field name="table_number"/>
+                                    </strong>
+                                    <br/>
+                                    <small class="text-muted"><field name="name"/></small>
+                                </div>
+                                <div class="o_kanban_record_top_right">
+                                    <span class="badge text-bg-warning"><field name="elapsed_display"/></span>
+                                </div>
                             </div>
-                            <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" string="Edit Ingredients" class="btn btn-primary mt8"/>
+                            
+                            <hr class="mt4 mb4"/>
+                            
+                            <div class="o_kanban_record_body">
+                                <strong>Orders:</strong>
+                                <div class="text-muted mb-2"><field name="item_summary"/></div>
+                                
+                                <strong>Ingredients Needed:</strong>
+                                <div style="white-space: pre-wrap; font-size: 12px; color: #dc3545;">
+                                    <field name="ingredients_needed"/>
+                                </div>
+                            </div>
+
+                            <div class="o_kanban_record_bottom mt-3 pt-2" style="border-top: 1px solid #eee;">
+                                <t t-if="record.status.raw_value == 'waiting'">
+                                    <button type="object" name="action_start_progress" class="btn btn-primary btn-sm w-100">
+                                        <i class="fa fa-fire"/> Mulai Masak
+                                    </button>
+                                </t>
+                                <t t-if="record.status.raw_value == 'on_progress'">
+                                    <button type="object" name="action_mark_done" class="btn btn-success btn-sm w-100">
+                                        <i class="fa fa-check"/> Selesai
+                                    </button>
+                                </t>
+                                <t t-if="record.status.raw_value == 'done'">
+                                    <div class="text-success text-center w-100 font-weight-bold">
+                                        <i class="fa fa-check-circle"/> Siap Disajikan
+                                    </div>
+                                </t>
+                            </div>
                         </div>
                     </t>
                 </templates>
@@ -68,116 +116,10 @@
         </field>
     </record>
 
-    <record id="view_kitchen_order_monitor_tree" model="ir.ui.view">
-        <field name="name">reveuse_resto.kitchen.order.monitor.tree.mock</field>
-        <field name="model">reveuse_resto.kitchen_order</field>
-        <field name="arch" type="xml">
-            <tree string="Kitchen - Mocked Grid" create="0" edit="0" delete="0" class="reveuse-hidden-tree">
-                <field name="name" string="Static Placeholder"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_kitchen_order_monitor_form" model="ir.ui.view">
-        <field name="name">reveuse_resto.kitchen.order.monitor.form.mock</field>
-        <field name="model">reveuse_resto.kitchen_order</field>
-        <field name="arch" type="xml">
-            <form string="Daftar Pesanan" create="0" edit="0" delete="0" class="reveuse-shell reveuse-page-kitchen">
-                <sheet>
-                    <div class="reveuse-page-head">
-                        <h1>Kitchen Order Monitor</h1>
-                        <p>Live tracking of incoming food orders and preparation status.</p>
-                    </div>
-
-                    <div class="reveuse-kitchen-lanes">
-                        <div class="reveuse-lane">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h2 style="color: var(--rv-accent);">Waiting</h2>
-                                <span class="badge rounded-pill" style="background: var(--rv-bg); color: var(--rv-accent); border: 1px solid var(--rv-accent);">2 Orders</span>
-                            </div>
-                            
-                            <div class="reveuse-kitchen-card">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div class="reveuse-kitchen-ticket-id">ORD-240423-009</div>
-                                    <span class="tag tag-warn">00:05</span>
-                                </div>
-                                <h3>Table T-02</h3>
-                                <div class="reveuse-kitchen-meta">
-                                    <ul style="padding-left: 1.2rem; margin: 8px 0;">
-                                        <li>Nasi Goreng x2</li>
-                                        <li>Es Teh x2</li>
-                                    </ul>
-                                </div>
-                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
-                                        string="Process Order" class="btn btn-primary w-100 mt-2"/>
-                            </div>
-
-                            <div class="reveuse-kitchen-card">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div class="reveuse-kitchen-ticket-id">ORD-240423-016</div>
-                                    <span class="tag tag-warn">00:03</span>
-                                </div>
-                                <h3>Table T-08</h3>
-                                <div class="reveuse-kitchen-meta">
-                                    <ul style="padding-left: 1.2rem; margin: 8px 0;">
-                                        <li>Chicken Burger x2</li>
-                                        <li>Iced Coffee x2</li>
-                                    </ul>
-                                </div>
-                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
-                                        string="Process Order" class="btn btn-primary w-100 mt-2"/>
-                            </div>
-                        </div>
-
-                        <div class="reveuse-lane">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h2 style="color: var(--rv-ok);">On Progress</h2>
-                                <span class="badge rounded-pill" style="background: #f0fdf4; color: var(--rv-ok); border: 1px solid var(--rv-ok);">2 Orders</span>
-                            </div>
-
-                            <div class="reveuse-kitchen-card" style="border-left: 4px solid var(--rv-ok);">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div class="reveuse-kitchen-ticket-id">ORD-240423-012</div>
-                                    <span class="tag tag-danger">00:14</span>
-                                </div>
-                                <h3>Table T-11</h3>
-                                <div class="reveuse-kitchen-meta">
-                                    <ul style="padding-left: 1.2rem; margin: 8px 0;">
-                                        <li>Steak Medium x3</li>
-                                        <li>Fries Large x2</li>
-                                    </ul>
-                                </div>
-                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
-                                        string="Mark as Done" class="btn btn-success w-100 mt-2"/>
-                            </div>
-
-                            <div class="reveuse-kitchen-card" style="border-left: 4px solid var(--rv-ok);">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div class="reveuse-kitchen-ticket-id">ORD-240423-014</div>
-                                    <span class="tag tag-danger">00:10</span>
-                                </div>
-                                <h3>Table T-05</h3>
-                                <div class="reveuse-kitchen-meta">
-                                    <ul style="padding-left: 1.2rem; margin: 8px 0;">
-                                        <li>Spicy Ramen x2</li>
-                                        <li>Mineral Water x2</li>
-                                    </ul>
-                                </div>
-                                <button type="action" name="%(reveuse_resto.action_kitchen_ingredient_form)d" 
-                                        string="Mark as Done" class="btn btn-success w-100 mt-2"/>
-                            </div>
-                        </div>
-                    </div>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
     <record id="action_kitchen_order_monitor" model="ir.actions.act_window">
-        <field name="name">Daftar Pesanan</field>
+        <field name="name">Kitchen Board</field>
         <field name="res_model">reveuse_resto.kitchen_order</field>
-        <field name="view_mode">form,kanban,tree</field>
-        <field name="view_id" ref="reveuse_resto.view_kitchen_order_monitor_form"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="view_kitchen_order_monitor_kanban"/>
     </record>
 </odoo>

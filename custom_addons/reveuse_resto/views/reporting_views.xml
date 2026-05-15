@@ -4,7 +4,7 @@
         <field name="name">reveuse_resto.management_overview.form</field>
         <field name="model">reveuse_resto.management_overview</field>
         <field name="arch" type="xml">
-            <form string="Managerial Overview" create="0" edit="0" delete="0" class="reveuse-shell">
+            <form string="Managerial Overview" class="reveuse-shell" create="false" edit="false" delete="false">
                 <sheet>
                     <div class="reveuse-page-head">
                         <h1>Managerial Control Center</h1>
@@ -25,7 +25,7 @@
                         <p class="text-muted">Kelola peran staff dan perizinan modul secara langsung.</p>
                         
                         <field name="pengguna_ids">
-                            <tree editable="bottom" decoration-info="peran == 'manager'" decoration-warning="peran == 'kasir'">
+                            <tree create="0" delete="0" edit="0" decoration-info="peran == 'manager'" decoration-warning="peran == 'kasir'">
                                 <field name="name" string="Staff Name"/>
                                 <field name="email" string="Email"/>
                                 <field name="no_telp" string="No. Telp"/>
@@ -34,26 +34,10 @@
                                        decoration-info="peran == 'manager'" 
                                        decoration-warning="peran == 'kasir'"
                                        decoration-success="peran == 'kitchen'"
-                                       decoration-danger="peran == 'warehouse'"/>
-                                
-                                <field name="status_notif" string="Module Access" widget="badge" decoration-info="1"/>
-                                <button name="action_open_user_detail" string="Manage Access" type="object" 
-                                        class="btn-primary" icon="fa-gears"/>
+                                       decoration-danger="peran == 'warehouse'"/>                                
+                                <button name="action_open_user_detail" string="Manage Access" type="object" class="btn-primary" icon="fa-gears"/>
                             </tree>
                         </field>
-                    </div>
-
-                    <div class="reveuse-panel" style="border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px;">
-                        <div class="reveuse-panel-title">System Logs &amp; Integrity (CR-4)</div>
-                        <div class="reveuse-form-grid" style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong>Last Security Audit:</strong> 24 April 2026<br/>
-                                <strong>Unauthorized Attempts:</strong> 0
-                            </div>
-                            <span class="btn btn-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
-                                Reset All Staff Session Tokens
-                            </span>
-                        </div>
                     </div>
                 </sheet>
             </form>

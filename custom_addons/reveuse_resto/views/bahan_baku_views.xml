@@ -30,92 +30,15 @@
         <field name="name">reveuse_resto.bahan_baku.form.mock</field>
         <field name="model">reveuse_resto.bahan_baku</field>
         <field name="arch" type="xml">
-            <form string="Warehouse" create="0" edit="0" delete="0" class="reveuse-shell reveuse-page-warehouse">
+            <form string="Beranda" create="0" edit="0" delete="0" class="reveuse-shell">
                 <sheet>
-                    <div class="reveuse-page-head">
-                        <h1>Warehouse Operations</h1>
-                        <p>High-fidelity static prototype for stock room monitoring.</p>
-                    </div>
-
-                    <div class="reveuse-stat-row">
-                        <div class="reveuse-stat-card">
-                            <div class="reveuse-stat-label">Items Tracked</div>
-                            <div class="reveuse-stat-value">42 SKU</div>
-                        </div>
-                        <div class="reveuse-stat-card">
-                            <div class="reveuse-stat-label">Critical Stock</div>
-                            <div class="reveuse-stat-value">3 Items</div>
-                        </div>
-                        <div class="reveuse-stat-card">
-                            <div class="reveuse-stat-label">Restock ETA</div>
-                            <div class="reveuse-stat-value">16:30</div>
-                        </div>
-                    </div>
-
-                    <div class="reveuse-panel">
-                        <div class="reveuse-panel-title">Tree Mock - Warehouse Grid</div>
-                        <table class="reveuse-mock-table">
-                            <thead>
-                                <tr>
-                                    <th>Ingredient</th>
-                                    <th>Current Stock</th>
-                                    <th>Minimum</th>
-                                    <th>Zone</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Beef</td>
-                                    <td>50 kg</td>
-                                    <td>20 kg</td>
-                                    <td>Cold Storage A</td>
-                                    <td><span class="tag tag-good">Safe</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Tomato</td>
-                                    <td>20 kg</td>
-                                    <td>10 kg</td>
-                                    <td>Veg Rack B</td>
-                                    <td><span class="tag tag-good">Safe</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Cooking Oil</td>
-                                    <td>15 liter</td>
-                                    <td>12 liter</td>
-                                    <td>Dry Shelf C</td>
-                                    <td><span class="tag tag-warn">Low</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Chili Powder</td>
-                                    <td>4 kg</td>
-                                    <td>6 kg</td>
-                                    <td>Spice Locker</td>
-                                    <td><span class="tag tag-danger">Critical</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="reveuse-panel">
-                        <div class="reveuse-panel-title">Kanban Mock - Restock Lanes</div>
-                        <div class="reveuse-card-lane">
-                            <div class="reveuse-app-card">
-                                <h3>Restock Today</h3>
-                                <p>Chicken Breast - 25 kg</p>
-                                <p>Potato - 30 kg</p>
-                            </div>
-                            <div class="reveuse-app-card">
-                                <h3>Pending Supplier</h3>
-                                <p>Cheese Slice - 12 pack</p>
-                                <p>Burger Bun - 120 pcs</p>
-                            </div>
-                            <div class="reveuse-app-card">
-                                <h3>Quality Hold</h3>
-                                <p>Lettuce - inspection at 15:00</p>
-                                <p>Reason: moisture mismatch</p>
-                            </div>
-                        </div>
+                    <div class="text-center" style="margin-top: 80px; margin-bottom: 80px;">
+                        <h1 style="font-size: 42px; color: #002845; font-weight: 800; margin-bottom: 10px;">
+                            Selamat Datang di Sistem Informasi<br/>Reveuse Resto
+                        </h1>
+                        <p style="font-size: 18px; color: #555;">
+                            Silakan gunakan menu navigasi di bagian atas untuk mengelola Inventaris, Dapur, Kasir, dan Laporan.
+                        </p>
                     </div>
                 </sheet>
             </form>
@@ -123,11 +46,10 @@
     </record>
 
     <record id="action_bahan_baku" model="ir.actions.act_window">
-        <field name="name">Warehouse</field>
+        <field name="name">Beranda</field>
         <field name="res_model">reveuse_resto.bahan_baku</field>
-        <field name="view_mode">form,tree,kanban</field>
-        <field name="view_id" ref="view_bahan_baku_form"/>
-        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_bahan_baku_tree_crud"/>
     </record>
 
     <record id="view_bahan_baku_tree_crud" model="ir.ui.view">
@@ -138,7 +60,8 @@
                 <field name="name"/>
                 <field name="id_bahan"/>
                 <field name="kategori"/>
-                <field name="stok_sekarang"/>
+                <field name="product_id"/>
+                <field name="stok_sekarang" readonly="1"/>
                 <field name="batas_minimum"/>
                 <field name="satuan_id"/>
             </tree>
@@ -155,9 +78,10 @@
                         <field name="name"/>
                         <field name="id_bahan"/>
                         <field name="kategori"/>
+                        <field name="product_id"/>
                     </group>
                     <group>
-                        <field name="stok_sekarang"/>
+                        <field name="stok_sekarang" readonly="1"/>
                         <field name="batas_minimum"/>
                         <field name="satuan_id"/>
                     </group>

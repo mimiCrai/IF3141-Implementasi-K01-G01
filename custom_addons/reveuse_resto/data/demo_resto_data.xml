@@ -49,4 +49,48 @@
             }),
         ]"/>
     </record>
+
+    <record id="bahan_baku_biji_kopi_espresso" model="reveuse_resto.bahan_baku">
+        <field name="name">Biji Kopi Espresso</field>
+        <field name="kategori">minuman</field>
+        <field name="product_id" ref="reveuse_resto.product_biji_kopi_espresso"/>
+        <field name="satuan_id" ref="uom.product_uom_kgm"/>
+        <field name="batas_minimum">1</field>
+    </record>
+
+    <record id="bahan_baku_susu_fresh_milk" model="reveuse_resto.bahan_baku">
+        <field name="name">Susu Fresh Milk</field>
+        <field name="kategori">minuman</field>
+        <field name="product_id" ref="reveuse_resto.product_susu_fresh_milk"/>
+        <field name="satuan_id" ref="uom.product_uom_litre"/>
+        <field name="batas_minimum">2</field>
+    </record>
+
+    <record id="demo_user_manager" model="res.users">
+        <field name="name">Assistant Manager</field>
+        <field name="login">manager@reveuse.com</field>
+        <field name="password">manager123</field> 
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_assistant_manager'))]"/>
+    </record>
+
+    <record id="demo_user_kasir" model="res.users">
+        <field name="name">Kasir</field>
+        <field name="login">kasir@reveuse.com</field>
+        <field name="password">kasir123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_kasir'))]"/>
+    </record>
+
+    <record id="demo_user_kitchen" model="res.users">
+        <field name="name">Kitchen</field>
+        <field name="login">kitchen@reveuse.com</field>
+        <field name="password">kitchen123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_kitchen'))]"/>
+    </record>
+
+    <record id="demo_user_warehouse" model="res.users">
+        <field name="name">Warehouse</field>
+        <field name="login">warehouse@reveuse.com</field>
+        <field name="password">warehouse123</field>
+        <field name="groups_id" eval="[(4, ref('reveuse_resto.group_warehouse'))]"/>
+    </record>
 </odoo>
