@@ -1,106 +1,29 @@
-# IF3141 Sistem Informasi - Odoo Setup
+# Sistem Informasi Reveuse Resto
 
-## Introduction
+Nama Kelompok: CimolKuahKeju
 
-Odoo merupakan *Enterprise Resource Planning System* yang mampu melakukan implementasi modul modul kustom untuk menyelesaikan permasalahan proses bisnis pada suatu perusahaan.
+Kode Kelompok: G01
 
-Odoo memberikan opsi *on-premise solution* sehingga developer dapat melakukan implementasi kustom modul pada local environment.
+Kelas: K01
 
-Repository ini diperuntukkan untuk Tugas Besar IF3141 Sistem Informasi. Untuk memulai silakan melakukan fork dan membuat repository private untuk workspace setiap kelompok.
+Anggota Kelompok: 
+- 13523019 - Shannon Aurellius Anastasya Lie
+- 13523022 - Kenneth Ricardo Chandra
+- 13523032 - Nathan Jovial Hartono
+- 13523054 - Aloisius Adrian Stevan Gunawan
+- 13523055 - Muhammad Timur Kanigara
 
+### Deskripsi Sistem
+Sistem Informasi untuk bisnis Reveuse Resto dibuat untuk melakukan pelacakan pada data bahan baku sektor 
 
-## Pre-requisites
-Odoo diimplementasikan dengan Python environment dan database PostgreSQL. Repository ini sudah membungkus service aplikasi dan database melalui Docker.
+### Cara Menjalankan Sistem
 
-Sebelum memulai, pastikan dependency berikut sudah terpasang:
+#### Fitur <Navbar>
 
-1. Docker Desktop
-	- Download: https://www.docker.com/products/docker-desktop/
-2. Python 3.11
-	- Digunakan untuk virtual environment (venv) pada proses development modul
+#### Fitur <Navbar>
 
-## Struktur Direktori
+#### Fitur <Navbar>
 
-- `/config`
-	- Untuk menyimpan konfigurasi Odoo
-- `/custom_addons`
-	- Tempat pengerjaan modul kustom
-- `/dump`
-	- Database dump yang dapat diakses scripts untuk proses import/export
-- `/scripts`
-	- Untuk melakukan database migration
-- `docker-compose.yml`
-	- Orchestration service Odoo dan PostgreSQL
+### Kredensial user setiap role
 
-## Step-by-step Installation
-
-1. Jalankan service Odoo dan PostgreSQL:
-
-	```bash
-	docker compose up -d
-	```
-
-2. Buka aplikasi pada browser:
-	- http://localhost:8069
-
-3. Login menggunakan kredensial default:
-	- Username: `admin`
-	- Password: `admin`
-
-4. Aktifkan mode developer:
-	- Masuk ke **Settings**
-	- Nyalakan **Developer Mode / Developer Access**
-
-5. Buat Python virtual environment pada workspace:
-
-	```bash
-	python3.11 -m venv .venv
-	source .venv/bin/activate
-	pip install --upgrade pip
-	pip install -r requirements.txt
-	```
-
-6. Implementasikan modul pada folder:
-	- `custom_addons/`
-
-7. Setelah implementasi modul selesai, lakukan update daftar aplikasi:
-	- Masuk ke menu **Apps**
-	- Pilih **Update Apps List**
-
-8. Jika melakukan perubahan terhadap isi modul (modifying database), jangan lupa lakukan langkah database migration dengan mengikuti step di heading bawah ini.
-
-## Database Migration
-
-Odoo menggunakan local database pada implementasinya. Maka dari itu dibutuhkan migration system yang dapat dilakukan melakukan **dump db** atau **import db**. Sebelum melakukan migration jangan lupa untuk selalu mematikan service odoo & databasenya dengan menjalankan :
-
-```bash 
-docker compose down
-```
-
-Apabila terdapat perubahan pada database dan perubahan tersebut ingin diteruskan ke anggota tim lain, lakukan export database terlebih dahulu menggunakan script pada folder `scripts`.
-
-- macOS/Linux:
-
-  ```bash
-  ./scripts/export_db.sh
-  ```
-
-- Windows:
-
-  ```bat
-  scripts\export_db.cmd
-  ```
-
-Untuk melanjutkan pengerjaan dari hasil perubahan database rekan tim, lakukan import database terlebih dahulu :
-
-- macOS/Linux:
-
-  ```bash
-  ./scripts/import_db.sh
-  ```
-
-- Windows:
-
-  ```bat
-  scripts\import_db.cmd
-  ```
+### Kesimpulan dan Saran
