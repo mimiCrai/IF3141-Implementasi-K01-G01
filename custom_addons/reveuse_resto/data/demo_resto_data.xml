@@ -50,6 +50,22 @@
         ]"/>
     </record>
 
+    <record id="bahan_baku_biji_kopi_espresso" model="reveuse_resto.bahan_baku">
+        <field name="name">Biji Kopi Espresso</field>
+        <field name="kategori">minuman</field>
+        <field name="product_id" ref="reveuse_resto.product_biji_kopi_espresso"/>
+        <field name="satuan_id" ref="uom.product_uom_kgm"/>
+        <field name="batas_minimum">1</field>
+    </record>
+
+    <record id="bahan_baku_susu_fresh_milk" model="reveuse_resto.bahan_baku">
+        <field name="name">Susu Fresh Milk</field>
+        <field name="kategori">minuman</field>
+        <field name="product_id" ref="reveuse_resto.product_susu_fresh_milk"/>
+        <field name="satuan_id" ref="uom.product_uom_litre"/>
+        <field name="batas_minimum">2</field>
+    </record>
+
     <record id="demo_user_manager" model="res.users">
         <field name="name">Assistant Manager</field>
         <field name="login">manager@reveuse.com</field>

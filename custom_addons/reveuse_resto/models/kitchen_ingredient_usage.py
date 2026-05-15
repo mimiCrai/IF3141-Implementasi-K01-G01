@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 class KitchenIngredientUsage(models.Model):
     _name = "reveuse_resto.kitchen_ingredient_usage"
@@ -19,15 +19,3 @@ class KitchenIngredientUsage(models.Model):
     uom_id = fields.Many2one("uom.uom", string="Unit of Measure")
     unit = fields.Char(string="Unit")
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = super().create(vals_list)
-        for record in records:
-            # Integration logic: Find the warehouse item by name and deduct stock
-            if record.ingredient_name:
-                bahan = self.env['reveuse_resto.bahan_baku'].search([
-                    ('name', '=ilike', record.ingredient_name)
-                ], limit=1)
-                if bahan:
-                    bahan.stok_sekarang -= record.qty_used
-        return records

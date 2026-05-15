@@ -32,7 +32,13 @@ class Penerimaan(models.Model):
     def _apply_stock_delta(self, bahan, delta):
         if not bahan or not delta:
             return
-        bahan.write({'stok_sekarang': bahan.stok_sekarang + delta})
+        if not bahan.product_id:
+            raise ValidationError('Bahan baku harus terhubung ke Produk Inventory sebelum menerima stok.')
+
+        warehouse = self.env['stock.warehouse'].search([('company_id', '=', self.env.company.id)], limit=1)
+        location = warehouse.lot_stock_id or self.env.ref('stock.stock_location_stock')
+        qty = bahan.satuan_id._compute_quantity(delta, bahan.product_id.uom_id)
+        self.env['stock.quant']._update_available_quantity(bahan.product_id, location, qty)
 
     @api.model_create_multi
     def create(self, vals_list):
