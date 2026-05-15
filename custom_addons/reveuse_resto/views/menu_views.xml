@@ -135,13 +135,4 @@
         sequence="15"
         groups="reveuse_resto.group_assistant_manager"
     />
-
-    <menuitem
-        id="menu_reveuse_resto_management_reports"
-        name="Reports (Laporan Stok)"
-        parent="menu_reveuse_resto_management"
-        action="action_management_report"  
-        sequence="20"
-        groups="reveuse_resto.group_assistant_manager"
-    />
 </odoo>

@@ -14,10 +14,8 @@
                     </group>
                 </group>
                 <footer>
-                    <button name="action_view_report" string="Lihat di Layar" type="object" class="btn-primary"/>
-                    
-                    <button name="action_print_pdf" string="Cetak PDF" type="object" class="btn-success"/>
-                    
+                    <button name="action_view_report" string="Lihat Stok Saat Ini" type="object" class="btn-primary"/>
+                    <button name="action_print_pdf" string="Cetak PDF Mutasi" type="object" class="btn-success"/>
                     <button string="Batal" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
@@ -25,8 +23,18 @@
     </record>
 
     <record id="action_management_report" model="ir.actions.act_window">
-        <field name="name">Laporan Stok</field>
+        <field name="name">Laporan Mutasi Stok</field>
         <field name="res_model">reveuse_resto.management_report</field>
         <field name="view_mode">form</field>
-        <field name="target">new</field> </record>
+        <field name="target">new</field> 
+    </record>
+
+    <menuitem
+        id="menu_reveuse_resto_management_reports"
+        name="Reports (Laporan Stok)"
+        parent="reveuse_resto.menu_reveuse_resto_management"
+        action="action_management_report"  
+        sequence="20"
+        groups="reveuse_resto.group_assistant_manager"
+    />
 </odoo>

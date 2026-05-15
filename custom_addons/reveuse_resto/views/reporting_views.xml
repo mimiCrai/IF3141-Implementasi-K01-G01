@@ -39,19 +39,6 @@
                             </tree>
                         </field>
                     </div>
-
-                    <div class="reveuse-panel" style="border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px;">
-                        <div class="reveuse-panel-title">System Logs &amp; Integrity (CR-4)</div>
-                        <div class="reveuse-form-grid" style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong>Last Security Audit:</strong> 24 April 2026<br/>
-                                <strong>Unauthorized Attempts:</strong> 0
-                            </div>
-                            <span class="btn btn-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
-                                Reset All Staff Session Tokens
-                            </span>
-                        </div>
-                    </div>
                 </sheet>
             </form>
         </field>
