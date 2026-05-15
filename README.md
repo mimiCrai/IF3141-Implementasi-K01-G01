@@ -18,11 +18,11 @@ Sistem Informasi untuk bisnis Reveuse Resto dibuat untuk melakukan pelacakan pad
 
 ### Cara Menjalankan Sistem
 
-#### Fitur <Navbar>
+#### Fitur Navbar
 
-#### Fitur <Navbar>
+#### Fitur Navbar
 
-#### Fitur <Navbar>
+#### Fitur Navbar
 
 ### Kredensial user setiap role
 
