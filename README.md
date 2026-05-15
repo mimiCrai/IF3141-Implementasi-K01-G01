@@ -150,7 +150,7 @@ Expected result: Kitchen Board menampilkan order POS dan daftar ingredients yang
 
 Screenshot expected result:
 
-![Kitchen Board](docs/screenshots/09-kitchen-board.png)
+![Kitchen Board](docs/screenshots/9-kitchen-board.png)
 
 ### 10. Menguji Penggunaan Bahan
 
