@@ -32,6 +32,20 @@ Pada sistem ini, kasir dapat mencatat pesanan pelanggan melalui POS, sementara k
 
 ## Cara Menjalankan Sistem
 
+### 0. Import
+
+Jalankan Perintah berikut dari root repository:
+
+- Windows
+  ```powershell
+  scripts\import_db.cmd
+  ```
+  
+- MacOS/Linux
+  ```powershell
+  ./scripts/import_db.sh
+  ```
+
 ### 1. Menjalankan Container Odoo dan PostgreSQL
 
 Jalankan perintah berikut dari root repository:
@@ -110,27 +124,17 @@ Screenshot expected result:
 
 ![Install Reveuse Resto](docs/screenshots/06-install-reveuse-resto.png)
 
-### 7. Konfigurasi Chart of Accounts untuk POS
+### 7. Menguji Role Kasir
 
-Sebelum membuka POS session, pastikan Chart of Accounts sudah dikonfigurasi melalui menu **Accounting/Invoicing > Configuration > Settings**. Pilih fiscal localization yang sesuai, lalu simpan.
-
-Expected result: POS session dapat dibuat tanpa error `No chart of account configured`.
-
-Screenshot expected result:
-
-![Chart of Accounts](docs/screenshots/07-chart-of-accounts.png)
-
-### 8. Menguji Role Kasir
-
-Login sebagai Kasir, lalu buka **Reveuse Resto > Kasir**. Mulai POS session, pilih produk `Iced Kopi Susu`, lakukan pembayaran, lalu validasi order.
+Login sebagai Kasir, lalu buka **Point of Sale**. Mulai POS session, pilih produk `Iced Kopi Susu`, lakukan pembayaran, lalu validasi order.
 
 Expected result: pesanan berhasil dibuat dari POS dan stok bahan baku terkait BoM Kit berkurang.
 
 Screenshot expected result:
 
-![POS Order](docs/screenshots/08-pos-order.png)
+![POS Order](docs/screenshots/07-pos-order.png)
 
-### 9. Menguji Role Warehouse
+### 8. Menguji Role Warehouse
 
 Login sebagai Warehouse, lalu buka **Reveuse Resto > Warehouse**. Cek master data bahan baku seperti `Biji Kopi Espresso` dan `Susu Fresh Milk`. Tambahkan stok melalui menu **Penerimaan Bahan**.
 
@@ -138,9 +142,9 @@ Expected result: stok bahan baku di Warehouse berubah dan tersambung dengan stok
 
 Screenshot expected result:
 
-![Warehouse Stock](docs/screenshots/09-warehouse-stock.png)
+![Warehouse Stock](docs/screenshots/08-warehouse-stock.png)
 
-### 10. Menguji Role Kitchen
+### 9. Menguji Role Kitchen
 
 Login sebagai Kitchen, lalu buka **Reveuse Resto > Kitchen Staff > Board (Waiting / On Progress)**. Setelah order dibuat dari POS, pesanan akan muncul di Kitchen Board beserta kebutuhan bahan bakunya.
 
@@ -148,9 +152,9 @@ Expected result: Kitchen Board menampilkan order POS dan daftar ingredients yang
 
 Screenshot expected result:
 
-![Kitchen Board](docs/screenshots/10-kitchen-board.png)
+![Kitchen Board](docs/screenshots/9-kitchen-board.png)
 
-### 11. Menguji Penggunaan Bahan
+### 10. Menguji Penggunaan Bahan
 
 Buka **Reveuse Resto > Kitchen Staff > Penggunaan Bahan**.
 
@@ -158,9 +162,9 @@ Expected result: sistem menampilkan histori bahan yang digunakan berdasarkan pes
 
 Screenshot expected result:
 
-![Penggunaan Bahan](docs/screenshots/11-penggunaan-bahan.png)
+![Penggunaan Bahan](docs/screenshots/10-penggunaan-bahan.png)
 
-### 12. Menguji Role Manajer
+### 11. Menguji Role Manajer
 
 Login sebagai Manajer, lalu buka **Reveuse Resto > Manajer** untuk melihat managerial overview, data staff, dan laporan stok.
 
@@ -168,7 +172,7 @@ Expected result: Manajer dapat mengakses fitur pemantauan dan pelaporan.
 
 Screenshot expected result:
 
-![Manager Overview](docs/screenshots/12-manager-overview.png)
+![Manager Overview](docs/screenshots/11-manager-overview.png)
 
 ## Kredensial User Setiap Role
 
