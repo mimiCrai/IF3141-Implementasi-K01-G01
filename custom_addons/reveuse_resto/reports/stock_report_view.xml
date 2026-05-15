@@ -14,7 +14,6 @@
                     </group>
                 </group>
                 <footer>
-                    <button name="action_view_report" string="Lihat Stok Saat Ini" type="object" class="btn-primary"/>
                     <button name="action_print_pdf" string="Cetak PDF Mutasi" type="object" class="btn-success"/>
                     <button string="Batal" class="btn-secondary" special="cancel"/>
                 </footer>
