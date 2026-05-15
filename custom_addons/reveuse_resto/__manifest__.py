@@ -16,7 +16,7 @@
         "views/kitchen_monitor_views.xml",
         "views/reporting_views.xml",
         # "views/notification_setting_views.xml",
-        "views/management_report_views.xml",
+        # "views/management_report_views.xml",
         "views/templates.xml",
         "views/transaksi_views.xml",
         "reports/stock_report_view.xml",

@@ -14,42 +14,44 @@
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
-                    <div class="text-center mb-4">
+                    <div class="text-center" style="border-bottom: 2px solid #002845; margin-bottom: 20px;">
                         <h2>Laporan Mutasi Stok Bahan Baku</h2>
-                        <t t-foreach="docs" t-as="doc">
-                            <p><strong>Periode:</strong> <span t-field="doc.tanggal_mulai"/> s/d <span t-field="doc.tanggal_akhir"/></p>
-                            
-                            <t t-set="daftar_transaksi" t-value="request.env['reveuse_resto.transaksi'].search([('tanggal', '&gt;=', doc.tanggal_mulai), ('tanggal', '&lt;=', doc.tanggal_akhir)])"/>
-                            
-                            <table class="table table-sm table-bordered mt-4">
-                                <thead>
-                                    <tr>
-                                        <th>ID Transaksi</th>
-                                        <th>Tanggal</th>
-                                        <th>Jenis Transaksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="daftar_transaksi" t-as="trx">
-                                        <tr>
-                                            <td><span t-field="trx.name"/></td>
-                                            <td><span t-field="trx.tanggal"/></td>
-                                            <td>
-                                                <t t-if="trx.jenis_transaksi == 'masuk'">Masuk (Penerimaan)</t>
-                                                <t t-if="trx.jenis_transaksi == 'keluar'">Keluar (Penggunaan)</t>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </tbody>
-                            </table>
-                            
-                            <t t-if="not daftar_transaksi">
-                                <div class="alert alert-warning text-center mt-3">
-                                    Tidak ada transaksi yang ditemukan pada rentang tanggal tersebut.
-                                </div>
-                            </t>
-                        </t>
                     </div>
+                    
+                    <t t-foreach="docs" t-as="doc">
+                        <p><strong>Periode Laporan:</strong> <span t-field="doc.tanggal_mulai"/> s/d <span t-field="doc.tanggal_akhir"/></p>
+                        
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th>Tanggal</th>
+                                    <th>Referensi</th>
+                                    <th>Bahan Baku</th>
+                                    <th class="text-right">Jumlah (Mutasi)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="mutasi_list" t-as="m">
+                                    <tr>
+                                        <td><span t-esc="m['tanggal']"/></td>
+                                        <td>
+                                            <span t-esc="m['ref']"/><br/>
+                                            <small class="text-muted"><span t-esc="m['ket']"/></small>
+                                        </td>
+                                        <td><span t-esc="m['bahan']"/></td>
+                                        <td class="text-right">
+                                            <span t-if="m['tipe'] == 'masuk'" style="color: green; font-weight: bold;">
+                                                + <span t-esc="m['qty']"/>
+                                            </span>
+                                            <span t-if="m['tipe'] == 'keluar'" style="color: red; font-weight: bold;">
+                                                - <span t-esc="m['qty']"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
                 </div>
             </t>
         </t>
