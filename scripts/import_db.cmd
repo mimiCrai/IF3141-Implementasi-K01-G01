@@ -46,15 +46,16 @@ echo Starting db container...
 %DC% up -d db || goto :error
 
 echo Recreating database...
-%DC% exec -T db dropdb -U odoo --if-exists postgres || goto :error
-%DC% exec -T db createdb -U odoo postgres || goto :error
+%DC% exec -T db psql -U odoo -d template1 -v ON_ERROR_STOP=1 -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'postgres' AND pid <> pg_backend_pid();" || goto :error
+%DC% exec -T db dropdb -U odoo --if-exists --maintenance-db=template1 postgres || goto :error
+%DC% exec -T db createdb -U odoo --maintenance-db=template1 postgres || goto :error
 
 echo Restoring database from: %IN_FILE%
-%DC% exec -T db pg_restore -U odoo -d postgres --no-owner --clean < "%IN_FILE%"
+%DC% exec -T db pg_restore -U odoo -d postgres --no-owner < "%IN_FILE%" || goto :error
 
 if exist "%FS_FILE%" (
 	echo Restoring filestore from: %FS_FILE%
-	%DC% run --rm -v odoo-web-data:/filestore alpine sh -c "rm -rf /filestore/* && tar xzf - -C /filestore" < "%FS_FILE%" || goto :error
+	%DC% run -T --rm --no-deps -v odoo-web-data:/filestore alpine sh -c "rm -rf /filestore/* && tar xzf - -C /filestore" < "%FS_FILE%" || goto :error
 ) else (
 	echo Warning: No filestore backup found at %FS_FILE%, skipping.
 )
