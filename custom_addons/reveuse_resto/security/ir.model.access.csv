@@ -15,3 +15,5 @@ access_reveuse_penerimaan_warehouse,reveuse.penerimaan.warehouse,model_reveuse_r
 access_reveuse_penerimaan_manager,reveuse.penerimaan.manager,model_reveuse_resto_penerimaan,reveuse_resto.group_assistant_manager,1,1,1,1
 access_reveuse_resto_pengguna_manager,pengguna.manager.access,model_reveuse_resto_pengguna,reveuse_resto.group_assistant_manager,1,1,1,1
 access_reveuse_resto_overview_manager,overview.manager.access,model_reveuse_resto_management_overview,reveuse_resto.group_assistant_manager,1,1,1,1
+access_reveuse_wizard_user,reveuse.wizard.user,model_reveuse_resto_ingredient_wizard,base.group_user,1,1,1,1
+access_reveuse_wizard_line_user,reveuse.wizard.line.user,model_reveuse_resto_ingredient_wizard_line,base.group_user,1,1,1,1

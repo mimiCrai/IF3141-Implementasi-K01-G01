@@ -8,3 +8,4 @@ from . import management_overview
 from . import management_report
 from . import notification_setting
 from . import penerimaan
+from . import ingredient_wizard

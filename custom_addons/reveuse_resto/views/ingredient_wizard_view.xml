@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ingredient_wizard_form" model="ir.ui.view">
+        <field name="name">reveuse_resto.ingredient.wizard.form</field>
+        <field name="model">reveuse_resto.ingredient.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Konfirmasi Bahan Baku">
+                <sheet>
+                    <p class="oe_grey">
+                        Sesuaikan bahan baku yang digunakan sebelum menandai pesanan sebagai selesai.
+                    </p>
+                    <group>
+                        <field name="kitchen_order_id" readonly="1" options="{'no_open': True}"/>
+                    </group>
+                    <notebook>
+                        <page string="Daftar Bahan" name="ingredients">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="qty_used"/>
+                                    <field name="uom_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" string="Konfirmasi &amp; Selesai" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Batal" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
